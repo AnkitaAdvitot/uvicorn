@@ -597,6 +597,7 @@ class Config:
                 family = socket.AF_INET6
                 addr_format = "%s://[%s]:%d"
 
+            # proto must be IPPROTO_TCP so accepted sockets inherit it and asyncio's _set_nodelay() enables TCP_NODELAY.
             sock = socket.socket(family=family, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             try:
